@@ -27,6 +27,24 @@ const CATEGORIES: Record<string, CategoryConfig> = {
     amazonReferralRate: 0.08, // 8%
     flipkartReferralRate: 0.10 // 10%
   },
+  bags: {
+    name: 'Bag Manufacturers (School, Jute & Travel)',
+    nameTa: 'பேக் தயாரிப்பாளர்கள் (பள்ளி, ஜூட் & டிராவல்)',
+    defaultCost: 180,
+    defaultPrice: 599,
+    defaultWeight: 420,
+    amazonReferralRate: 0.095, // 9.5%
+    flipkartReferralRate: 0.10 // 10%
+  },
+  covering_jewellery: {
+    name: 'Covering & 1-Gram Gold Jewellery',
+    nameTa: 'கவரிங் & 1 கிராம் தங்க நகைகள்',
+    defaultCost: 120,
+    defaultPrice: 499,
+    defaultWeight: 120,
+    amazonReferralRate: 0.125, // 12.5%
+    flipkartReferralRate: 0.13 // 13%
+  },
   brass: {
     name: 'Brass, Bronze & Utensils',
     nameTa: 'பித்தளை, வெண்கலம் & விளக்குகள்',

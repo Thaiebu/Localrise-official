@@ -24,9 +24,9 @@ Unlike conventional digital marketing agencies that only offer remote consulting
 - **🌐 Dual-Language Experience (English & தமிழ்):** Full bilingual interface tailored for Tamil-speaking factory owners and English-speaking executives, complete with native typography (`Noto Sans Tamil` & `Plus Jakarta Sans`) and smooth cross-fade state transitions.
 - **🧮 Interactive Profitability & Margin Calculator:** Real-time simulation engine calculating platform commissions, logistics/shipping tiers, GST impact, and net margins across **Amazon India**, **Flipkart**, and **Meesho**.
 - **🏭 Regional Manufacturing Cluster Playbooks:** Tailored launch strategies for key industrial hubs:
-  - **Madurai:** Sungudi sarees, food processing, bronze & brass metalware, auto components.
-  - **Tenkasi:** Ayikudi grass mats, handloom towels, spices & hill agro-produce, terracotta pottery.
-  - **Tirunelveli:** Halwa & traditional confectionery, bell metal utensils, palm crafts, textile weaving.
+  - **Madurai:** Sungudi sarees, covering & 1-gram gold jewellery, bag manufacturing (school, jute & travel), bronze & brass metalware.
+  - **Tenkasi & Puliyangudi:** Kadayanallur handloom towels & lungis, Puliyangudi lemon & agro value-adds, hill spices, coir fiber, agro implements.
+  - **Tirunelveli:** Halwa & confectionery, handcrafted bags & jute totes, palm crafts (karupatti), bell metal utensils.
 - **📋 Lead Ingestion & Factory Audit Flow:** Integrated factory audit questionnaire with automated submissions via [Formspree](https://formspree.io) and direct WhatsApp escalation.
 - **💼 Transparent Service Tiers:** Clear pricing breakdown covering Fast-Track Launch, Full-Funnel Growth, and Custom Enterprise scaling.
 - **❓ Comprehensive Regional FAQ:** Direct answers to manufacturer concerns regarding GST, RTO returns, barcoding, daily dispatch, and marketplace payout cycles.

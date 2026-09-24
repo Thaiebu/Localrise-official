@@ -38,23 +38,26 @@ export const RegionalClusters: React.FC<RegionalClustersProps> = ({
         </div>
 
         {/* District Tab Selectors */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex p-1.5 rounded-2xl bg-white border border-stone-300 shadow-xs gap-1.5">
+        <div className="flex justify-center mb-8 px-2 max-w-full">
+          <div className="inline-flex flex-wrap justify-center p-1.5 rounded-2xl bg-white border border-stone-300 shadow-xs gap-1.5 max-w-full">
             {REGIONAL_HUBS.map((hub) => {
               const isActive = hub.id === activeTab;
+              const tabLabel = language === 'ta'
+                ? (hub.id === 'madurai' ? 'மதுரை மையம்' : hub.id === 'tenkasi' ? 'தென்காசி & புளியங்குடி' : 'திருநெல்வேலி மையம்')
+                : hub.name;
               return (
                 <button
                   key={hub.id}
                   type="button"
                   onClick={() => setActiveTab(hub.id)}
-                  className={`px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${
+                  className={`px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 sm:gap-2 ${
                     isActive
                       ? 'bg-stone-900 text-white shadow-xs'
                       : 'text-stone-600 hover:text-stone-900 hover:bg-stone-50'
                   }`}
                 >
-                  <MapPin className={`w-4 h-4 ${isActive ? 'text-amber-400' : 'text-stone-400'}`} />
-                  <span>{language === 'ta' ? hub.nameTa : hub.name}</span>
+                  <MapPin className={`w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 ${isActive ? 'text-amber-400' : 'text-stone-400'}`} />
+                  <span>{tabLabel}</span>
                 </button>
               );
             })}

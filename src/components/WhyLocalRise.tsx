@@ -89,7 +89,7 @@ export const WhyLocalRise: React.FC<WhyLocalRiseProps> = ({ language, onOpenAudi
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span>{language === 'ta' ? 'மதுரை, தென்காசி, திருநெல்வேலி பகுதிகளில் நேரடி உதவி மற்றும் வழிகாட்டல்' : 'Local ground availability: In-person visits to Madurai, Tenkasi & Tirunelveli'}</span>
+                  <span>{language === 'ta' ? 'மதுரை, தென்காசி, புளியங்குடி, திருநெல்வேலி பகுதிகளில் நேரடி உதவி மற்றும் கள வழிகாட்டல்' : 'Local ground availability: In-person visits to Madurai, Tenkasi, Puliyangudi & Tirunelveli'}</span>
                 </li>
               </ul>
             </div>
@@ -109,13 +109,13 @@ export const WhyLocalRise: React.FC<WhyLocalRiseProps> = ({ language, onOpenAudi
             </div>
             <h4 className="text-xl font-bold text-stone-900">
               {language === 'ta'
-                ? 'நமது தெற்கு மாவட்ட தயாரிப்புகள் இடைத்தரகர்கள் இல்லாமல் உலகை அடைய வேண்டும்'
-                : 'South Tamil Nadu crafts and manufacturing deserve direct national pricing power'}
+                ? 'தென் தமிழக தொழில்முனைவோர் மற்றும் தயாரிப்புகள் இடைத்தரகர்கள் இல்லாமல் உலகை வெல்ல வேண்டும்'
+                : 'South Tamil Nadu entrepreneurs & manufacturers deserve direct national pricing power'}
             </h4>
             <p className="mt-3 text-stone-600 text-xs sm:text-sm leading-relaxed">
               {language === 'ta'
-                ? 'கடையநல்லூர் கைத்தறி துணிகள், பத்தமடை பாய்கள், மதுரை சுங்குடி மற்றும் திருநெல்வேலி பாரம்பரிய உணவுகள் வட இந்திய சந்தைகளில் அதிக விலைக்கு விற்கப்படுகின்றன. ஆனால் லாபம் இடைத்தரகர்களுக்கே செல்கிறது. LocalRise மூலம் தொழிற்சாலைகளுக்கு அந்த முழு லாபமும் கிடைக்கச் செய்வதே எங்கள் இலக்கு.'
-                : 'Generations of artisans and factory owners in Kadayanallur, Madurai, and Tirunelveli produce world-class goods, only to surrender margins to layers of regional middlemen. By operating directly on Amazon, Meesho, and Flipkart, your factory retains maximum profit and builds a lasting brand asset.'}
+                ? 'புளியங்குடியின் வேளாண் மற்றும் எலுமிச்சை பொருட்கள், கடையநல்லூர் கைத்தறி துணிகள், பத்தமடை பாய்கள், மதுரை சுங்குடி மற்றும் திருநெல்வேலி பாரம்பரிய தயாரிப்புகள் வட இந்திய சந்தைகளில் அதிக விலைக்கு விற்கப்படுகின்றன. ஆனால் லாபம் இடைத்தரகர்களுக்கே செல்கிறது. LocalRise மூலம் தென் தமிழக உற்பத்தியாளர்களுக்கு அந்த முழு லாபமும் கிடைக்கச் செய்வதே எங்கள் இலக்கு.'
+                : 'Generations of entrepreneurs and factory owners in Puliyangudi, Kadayanallur, Tenkasi, Madurai, and Tirunelveli produce exceptional goods, only to surrender margins to layers of middlemen. By selling directly on Amazon, Meesho, and Flipkart, your factory retains maximum profit and builds a lasting brand asset.'}
             </p>
           </div>
         </div>

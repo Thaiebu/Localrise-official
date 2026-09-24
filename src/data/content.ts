@@ -10,44 +10,48 @@ export const REGIONAL_HUBS: RegionalHub[] = [
     keyProducts: [
       'Sungudi Cotton Sarees & Dhotis',
       'Brass & Bell Metal Vilakku (Lamps)',
+      'Bag Manufacturing (School, College Backpacks, Jute & Travel Bags)',
+      'Covering & 1-Gram Gold Jewellery (Chains, Bangles & Bridal Sets)',
       'Jasmine & Herbal Fragrance Extracts',
-      'Traditional Confectionery & Pulses',
-      'Plastic & Engineering Components'
+      'Traditional Confectionery & Pulses'
     ],
     keyProductsTa: [
       'சுங்குடி சேலைகள் மற்றும் வேட்டிகள்',
       'பித்தளை விளக்குகள் மற்றும் பாத்திரங்கள்',
+      'பேக் தயாரிப்பு (பள்ளி பைகள், காலேஜ் பேக், ஜூட் & டிராவல்)',
+      'கவரிங் & 1 கிராம் தங்க நகைகள் (Covering Jewellery)',
       'மல்லிகை மற்றும் மூலிகை தயாரிப்புகள்',
-      'பாரம்பரிய உணவு மற்றும் தின்பண்டங்கள்',
-      'பொறியியல் மற்றும் பிளாஸ்டிக் பொருட்கள்'
+      'பாரம்பரிய உணவு மற்றும் தின்பண்டங்கள்'
     ],
-    highlight: 'Huge demand in North India for authentic GI Madurai Sungudi & handcrafted temple brassware.',
-    highlightTa: 'வட இந்தியாவிலும் வெளிநாடுகளிலும் மதுரை சுங்குடி மற்றும் பித்தளை கைவினைப் பொருட்களுக்கு பிரம்மாண்டமான வரவேற்பு.',
-    bestMarketplace: 'Amazon (Premium Brass & Gifts) + Meesho (Textiles)'
+    highlight: 'Huge pan-India demand for Madurai Sungudi, temple brassware, covering jewellery & factory-direct bags.',
+    highlightTa: 'சுங்குடி, பித்தளை விளக்குகள், கவரிங் நகைகள் மற்றும் பேக் தயாரிப்பாளர்களுக்கு அகில இந்திய அளவில் பெரும் வரவேற்பு.',
+    bestMarketplace: 'Amazon (Brass, Bags & Gifts) + Meesho (Textiles & Covering Jewellery)'
   },
   {
     id: 'tenkasi',
-    name: 'Tenkasi Cluster',
-    nameTa: 'தென்காசி உற்பத்தி மையம்',
-    district: 'Tenkasi, Kadayanallur & Shenkottai',
-    districtTa: 'தென்காசி, கடையநல்லூர் & செங்கோட்டை',
+    name: 'Tenkasi & Puliyangudi Cluster',
+    nameTa: 'தென்காசி & புளியங்குடி உற்பத்தி மையம்',
+    district: 'Tenkasi, Puliyangudi, Kadayanallur & Shenkottai',
+    districtTa: 'தென்காசி, புளியங்குடி, கடையநல்லூர் & செங்கோட்டை',
     keyProducts: [
       'Kadayanallur Handloom Lungis & Towels',
-      'Courtallam Hill Spices & Wild Honey',
-      'Coir & Coconut Fiber Products',
-      'Herbal Oils & Traditional Remedies',
-      'Small Agricultural Machinery & Implements'
+      'Puliyangudi Lemon Products & Agro Value-Add',
+      'Courtallam Hill Spices & Pure Wild Honey',
+      'Coir & Coconut Fiber Agro Products',
+      'Small Agricultural Implements & Machinery',
+      'Herbal Oils & Traditional Remedies'
     ],
     keyProductsTa: [
-      'கடையநல்லூர் கைத்தறி லுங்கிகள், துண்டுகள்',
+      'கடையநல்லூர் கைத்தறி லுங்கிகள் & துண்டுகள்',
+      'புளியங்குடி எலுமிச்சை & வேளாண் மதிப்புக்கூட்டு பொருட்கள்',
       'குற்றால வாசனை திரவியங்கள் & மலைத்தேன்',
-      'கயிறு மற்றும் தேங்காய் நார் பொருட்கள்',
-      'மூலிகை எண்ணெய்கள் & தைலங்கள்',
-      'விவசாய கருவிகள் மற்றும் உபகரணங்கள்'
+      'கயிறு & தேங்காய் நார் வேளாண் பொருட்கள்',
+      'விவசாய கருவிகள் மற்றும் உபகரணங்கள்',
+      'மூலிகை எண்ணெய்கள் & தைலங்கள்'
     ],
-    highlight: 'Exceptional direct factory pricing; high conversion on Meesho & Flipkart for textile volumes.',
-    highlightTa: 'நேரடி தொழிற்சாலை விலை; மீஷோ மற்றும் பிளிப்கார்ட்டில் கைத்தறி மொத்த விற்பனைக்கு அதிக வாய்ப்பு.',
-    bestMarketplace: 'Meesho (Mass Apparel) + Amazon (Spices/Organics)'
+    highlight: 'South TN entrepreneurial powerhouse: exceptional direct factory pricing, lime agro-derivatives & high-volume handloom on Meesho & Flipkart.',
+    highlightTa: 'தென் தமிழகத்தின் தொழில் முனைவோர் பூமி: எலுமிச்சை & வேளாண் பொருட்கள், நேரடி தொழிற்சாலை விலை கைத்தறி மற்றும் பான்-இந்தியா விற்பனை.',
+    bestMarketplace: 'Meesho (Mass Apparel & Towels) + Amazon (Agro/Spices & Organic)'
   },
   {
     id: 'tirunelveli',
@@ -57,17 +61,19 @@ export const REGIONAL_HUBS: RegionalHub[] = [
     districtTa: 'திருநெல்வேலி, அம்பாசமுத்திரம் & பத்தமடை',
     keyProducts: [
       'Authentic Tirunelveli Halwa & Sweets',
+      'Handcrafted Bags, School & Jute Totes',
+      'Covering & Traditional Temple Jewellery Ornaments',
       'Ambasamudram Lacquer Woodcraft & Toys',
       'Pattamadai Korai Fine Grass Mats (GI)',
-      'Traditional Palm Jaggery (Karupatti)',
-      'Heavy Cast Iron & Bronze Kitchenware'
+      'Traditional Palm Jaggery (Karupatti)'
     ],
     keyProductsTa: [
       'அசல் திருநெல்வேலி அல்வா & கார வகைகள்',
+      'தையல் பேக், பள்ளி பைகள் & ஜூட் பைகள்',
+      'கவரிங் & கோயில் ஆபரணங்கள் (Covering Jewellery)',
       'அம்பாசமுத்திரம் மர பொம்மைகள்',
       'பத்தமடை பாய் (GI Tag கைவினைப்பொருள்)',
-      'பாரம்பரிய பனங்கருப்பட்டி மற்றும் பதநீர் பொருட்கள்',
-      'இரும்பு மற்றும் வெண்கல சமையல் பாத்திரங்கள்'
+      'பாரம்பரிய பனங்கருப்பட்டி மற்றும் பதநீர் பொருட்கள்'
     ],
     highlight: 'Food preservation & GI-certified crafts ready for pan-India premium courier shipment.',
     highlightTa: 'நீண்ட நாள் கெடாத பேக்கேஜிங் மூலம் அகில இந்திய அளவிலான வாடிக்கையாளர்களுக்கு நேரடி டெலிவரி.',
@@ -183,10 +189,24 @@ export const HOW_IT_WORKS_STEPS = [
 export const PILOT_CASE_STUDIES = [
   {
     category: 'Handloom & Textiles',
-    location: 'Kadayanallur, Tenkasi',
+    location: 'Kadayanallur & Puliyangudi, Tenkasi',
     headline: 'From local weekly shandies to 180+ monthly orders on Meesho & Flipkart',
     quote: 'We used to depend entirely on wholesale middlemen taking 45-day credit. LocalRise helped us list our 100% cotton lungis and towels directly on Meesho. Today, cash settles into our bank account every week without stress.',
     metrics: ['180+ monthly orders', '7-day cash settlement', 'Pan-India reach (UP, Bihar, Maharashtra)']
+  },
+  {
+    category: 'Covering Jewellery & 1-Gram Gold',
+    location: 'Madurai & Tirunelveli',
+    headline: 'Covering jewellery workshop expanded from retail counter to 420+ pan-India orders/month',
+    quote: 'Covering jewellery has the highest margin profile online: our average order is under 150 grams, keeping courier fees at the absolute lowest slab (<₹50). Customers from Mumbai and Delhi re-order bridal sets and daily chains directly!',
+    metrics: ['420+ orders/month', '42% average net margin', 'Lowest courier slab (<150g)']
+  },
+  {
+    category: 'Bag Manufacturing (School & Travel)',
+    location: 'Madurai Cluster',
+    headline: 'Bag manufacturing unit scaled wholesale catalog into profitable Amazon & Flipkart combos',
+    quote: 'We manufacture school bags, college backpacks and jute bags. LocalRise helped us bundle them into 2-pack combo deals on Amazon & Flipkart with doorstep daily pickup. It turned our off-season into steady weekly revenue.',
+    metrics: ['2.6x higher margin vs wholesale', 'Zero collection credit risk', 'Daily doorstep pickup']
   },
   {
     category: 'Brass & Temple Craft',
@@ -194,17 +214,16 @@ export const PILOT_CASE_STUDIES = [
     headline: 'Traditional brass vilakku manufacturer unlocked ₹2.4 Lakhs/month in festival sales',
     quote: 'Most agencies in Chennai asked for big retainers with zero understanding of heavy brass weight courier charges. LocalRise came from real seller experience and optimized our packaging to avoid weight penalties on Amazon.',
     metrics: ['₹2.4L festival revenue', '38% lower shipping damage', 'Amazon Prime Eligible']
-  },
-  {
-    category: 'Packaged Confectionery & Palm Goods',
-    location: 'Tirunelveli Town',
-    headline: 'Pure Karupatti & Tirunelveli sweets shipped safely to Bengaluru & Chennai in 48 hours',
-    quote: 'Preserving shelf life and food-safe packaging were our biggest fears. LocalRise structured vacuum packaging specs and set up automated WhatsApp tracking so our customers never complain about courier delays.',
-    metrics: ['48h express delivery', '4.7/5 customer rating', 'Zero RTO on prepaid orders']
   }
 ];
 
 export const FAQS = [
+  {
+    q: 'Why are Bag Manufacturers & Covering Jewellery businesses so profitable on marketplaces?',
+    qTa: 'பேக் தயாரிப்பாளர்கள் மற்றும் கவரிங் நகை தொழிலுக்கு ஆன்லைன் மார்க்கெட்பிளேஸ் ஏன் அதிக லாபம் தருகிறது?',
+    a: 'Both categories have phenomenal marketplace economics: Covering & 1-Gram Gold jewellery is lightweight (<150 grams), meaning minimum courier shipping costs and exceptionally high gross margins (35-50%). Bag manufacturers (school, college, jute, travel) benefit from huge pan-India consumer volume and can bundle multi-packs on Amazon and Meesho, eliminating wholesale credit defaults.',
+    aTa: 'கவரிங் நகைகள் மிக குறைந்த எடை கொண்டவை (<150 கிராம்), எனவே கூரியர் கட்டணம் மிகவும் குறைவு; 35% முதல் 50% வரை நிகர லாபம் கிடைக்கும். பேக் தயாரிப்பாளர்கள் பள்ளி, கல்லூரி மற்றும் ஜூட் பைகளை காம்போக்களாக விற்று 45 நாள் கடன் சிக்கல்கள் இல்லாமல் வாரம் தோறும் ரொக்க வருவாய் ஈட்டலாம்.'
+  },
   {
     q: 'Do I need GST to sell on Amazon, Flipkart, or Meesho?',
     qTa: 'அமேசான், பிளிப்கார்ட் அல்லது மீஷோவில் விற்க ஜிஎஸ்டி (GST) கட்டாயமா?',

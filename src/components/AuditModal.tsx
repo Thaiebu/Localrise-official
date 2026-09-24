@@ -241,10 +241,10 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                     onChange={(e) => setFormData({ ...formData, city: e.target.value as any })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-hidden focus:ring-2 focus:ring-stone-900 bg-stone-50/50"
                   >
-                    <option value="Madurai">Madurai (மதுரை)</option>
-                    <option value="Tenkasi">Tenkasi / Kadayanallur (தென்காசி)</option>
+                    <option value="Tenkasi">Tenkasi / Puliyangudi / Kadayanallur (தென்காசி & புளியங்குடி)</option>
+                    <option value="Madurai">Madurai District (மதுரை & சுற்றுவட்டாரம்)</option>
                     <option value="Tirunelveli">Tirunelveli / Ambasamudram (திருநெல்வேலி)</option>
-                    <option value="Other TN">Other Southern TN (பிற பகுதிகள்)</option>
+                    <option value="Other TN">Other South TN Hubs (விருதுநகர், தூத்துக்குடி, கன்னியாகுமரி)</option>
                   </select>
                 </div>
 
@@ -259,6 +259,8 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                     className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-hidden focus:ring-2 focus:ring-stone-900 bg-stone-50/50"
                   >
                     <option value="Handloom & Textiles">Handloom, Sarees & Textiles (கைத்தறி)</option>
+                    <option value="Bag Manufacturers">Bag Manufacturers (School, Jute & Travel - பேக் தயாரிப்பு)</option>
+                    <option value="Covering Jewellery">Covering & 1-Gram Gold Jewellery (கவரிங் நகைகள்)</option>
                     <option value="Brass & Utensils">Brass, Bronze & Utensils (பித்தளை பாத்திரங்கள்)</option>
                     <option value="Traditional Foods & Sweets">Sweets, Halwa & Spices (அல்வா & மசாலா)</option>
                     <option value="Woodcraft & Mats">Woodcraft, Mats & Coir (மர பொம்மைகள் & பாய்)</option>

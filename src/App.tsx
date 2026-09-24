@@ -57,9 +57,14 @@ export default function App() {
       // Phase 3: Fade-in smoothly on next render frame
       requestAnimationFrame(() => {
         setIsLangTransitioning(false);
+        window.scrollTo({ left: 0 });
       });
     }, 150);
   };
+
+  useEffect(() => {
+    window.scrollTo({ left: 0 });
+  }, [language]);
 
   useEffect(() => {
     return () => {
@@ -92,7 +97,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBFBF9] text-[#1E293B] flex flex-col font-sans selection:bg-amber-200 selection:text-stone-900">
+    <div className="min-h-screen bg-[#FBFBF9] text-[#1E293B] flex flex-col font-sans selection:bg-amber-200 selection:text-stone-900 w-full overflow-x-hidden">
       
       {/* Sticky Navigation */}
       <Navbar
@@ -104,7 +109,7 @@ export default function App() {
       />
 
       {/* Main Page Sections with smooth fade transition */}
-      <main className={`flex-1 lang-fade-transition ${isLangTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
+      <main className={`flex-1 w-full overflow-x-hidden lang-fade-transition ${isLangTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
         
         {/* Hero Section */}
         <Hero

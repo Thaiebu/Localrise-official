@@ -375,10 +375,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
                       onChange={(e) => handleChange('district', e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-stone-700 bg-stone-900/90 text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                     >
-                      <option value="Madurai">Madurai (மதுரை)</option>
-                      <option value="Tenkasi">Tenkasi / Kadayanallur (தென்காசி)</option>
+                      <option value="Tenkasi">Tenkasi / Puliyangudi / Kadayanallur (தென்காசி & புளியங்குடி)</option>
+                      <option value="Madurai">Madurai District (மதுரை & சுற்றுவட்டாரம்)</option>
                       <option value="Tirunelveli">Tirunelveli / Ambasamudram (திருநெல்வேலி)</option>
-                      <option value="Other TN">Other Southern TN (பிற மாவட்டங்கள்)</option>
+                      <option value="Other TN">Other South TN Hubs (விருதுநகர், தூத்துக்குடி, etc.)</option>
                     </select>
                   </div>
 
@@ -393,6 +393,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
                       className="w-full px-3.5 py-2.5 rounded-xl border border-stone-700 bg-stone-900/90 text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-amber-500"
                     >
                       <option value="Handloom & Sarees">Handloom, Sarees & Textiles</option>
+                      <option value="Bag Manufacturers">Bag Manufacturers (School, Jute, Travel & Backpacks)</option>
+                      <option value="Covering Jewellery">Covering & 1-Gram Gold Jewellery Business</option>
                       <option value="Brass & Utensils">Brass, Bronze & Utensils</option>
                       <option value="Halwa & Traditional Foods">Traditional Foods & Confectionery</option>
                       <option value="Woodcraft & Mats">Woodcraft, Mats & Coir</option>

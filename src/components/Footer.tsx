@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, MessageSquare, Phone, Mail, Globe, ArrowUpRight, BookOpen } from 'lucide-react';
+import { MapPin, MessageSquare, Phone, Mail, Globe, ArrowUpRight } from 'lucide-react';
 import { Language } from '../types';
 
 interface FooterProps {
@@ -36,8 +36,8 @@ export const Footer: React.FC<FooterProps> = ({
             
             <p className="text-xs sm:text-sm text-stone-400 leading-relaxed max-w-sm mb-6">
               {language === 'ta'
-                ? 'மதுரை, தென்காசி & திருநெல்வேலி உற்பத்தியாளர்களை ஆன்லைனில் கொண்டு வருகிறோம் — சரியான ஸ்டோர், சரியான மார்க்கெட்பிளேஸ் மற்றும் நேரடி களப்பணி.'
-                : 'Taking manufacturers in Madurai, Tenkasi & Tirunelveli online — the right store, the right marketplace, and hands-on execution from someone who has actually sold on these platforms.'}
+                ? 'தென் தமிழகம்: மதுரை, தென்காசி, புளியங்குடி & திருநெல்வேலி தொழில்முனைவோரின் தயாரிப்புகளை ஆன்லைனில் கொண்டு வருகிறோம் — சரியான ஸ்டோர், சரியான மார்க்கெட்பிளேஸ் மற்றும் நேரடி களப்பணி.'
+                : 'Taking South Tamil Nadu manufacturers in Madurai, Tenkasi, Puliyangudi & Tirunelveli online — the right store, the right marketplace, and hands-on ground execution.'}
             </p>
 
             <div className="flex flex-col gap-2 text-xs text-stone-400 font-mono">
@@ -64,24 +64,13 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                <span><strong>Tenkasi:</strong> Handloom, Kadayanallur & Coir</span>
+                <span><strong>Tenkasi & Puliyangudi:</strong> Handloom, Lime Agro, Spices & Coir</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                 <span><strong>Tirunelveli:</strong> Halwa, Mats, Karupatti & Crafts</span>
               </li>
             </ul>
-
-            <div className="mt-6 pt-4 border-t border-stone-800">
-              <button
-                type="button"
-                onClick={onOpenDeployGuide}
-                className="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 font-medium underline underline-offset-2"
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>How to deploy to localrise.co.in</span>
-              </button>
-            </div>
           </div>
 
           {/* Marketplaces & Direct Navigation */}

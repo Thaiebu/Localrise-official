@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, MessageSquare, MapPin, TrendingUp, ShieldCheck, Box, Store } from 'lucide-react';
+import { ArrowRight, CheckCircle2, MessageSquare, MapPin, TrendingUp, ShieldCheck, Box, Store, Sparkles } from 'lucide-react';
 import { Language } from '../types';
 
 interface HeroProps {
@@ -18,34 +18,57 @@ export const Hero: React.FC<HeroProps> = ({ language, onOpenAudit, onOpenWhatsAp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* District Badges Banner */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 border border-stone-200 text-stone-700 text-xs font-semibold">
             <MapPin className="w-3.5 h-3.5 text-amber-600" />
             <span>Madurai (மதுரை)</span>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 border border-stone-200 text-stone-700 text-xs font-semibold">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-950 text-xs font-semibold shadow-2xs">
             <MapPin className="w-3.5 h-3.5 text-amber-600" />
-            <span>Tenkasi (தென்காசி)</span>
+            <span>Tenkasi & Puliyangudi (தென்காசி / புளியங்குடி)</span>
           </div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 border border-stone-200 text-stone-700 text-xs font-semibold">
             <MapPin className="w-3.5 h-3.5 text-amber-600" />
             <span>Tirunelveli (திருநெல்வேலி)</span>
           </div>
+          <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-semibold">
+            <Sparkles className="w-3 h-3 text-emerald-600" />
+            <span>{language === 'ta' ? 'தென் தமிழகம்' : 'South Tamil Nadu'}</span>
+          </div>
+        </div>
+
+        {/* Manufacturing Categories Pill Bar */}
+        <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-medium text-stone-600 mb-7">
+          <span className="px-3 py-1 rounded-lg bg-stone-100 border border-stone-200">
+            {language === 'ta' ? 'கைத்தறி & ஜவுளி' : 'Handloom & Textiles'}
+          </span>
+          <span className="px-3 py-1 rounded-lg bg-amber-50 border border-amber-300 text-amber-950 font-semibold shadow-2xs">
+            {language === 'ta' ? 'பேக் தயாரிப்பாளர்கள்' : 'Bag Manufacturers'}
+          </span>
+          <span className="px-3 py-1 rounded-lg bg-amber-50 border border-amber-300 text-amber-950 font-semibold shadow-2xs">
+            {language === 'ta' ? 'கவரிங் & 1 கிராம் நகைகள்' : 'Covering & 1-Gram Jewellery'}
+          </span>
+          <span className="px-3 py-1 rounded-lg bg-stone-100 border border-stone-200">
+            {language === 'ta' ? 'பித்தளை பாத்திரங்கள்' : 'Brass & Metalcraft'}
+          </span>
+          <span className="px-3 py-1 rounded-lg bg-stone-100 border border-stone-200">
+            {language === 'ta' ? 'பாரம்பரிய உணவு & இனிப்பு' : 'Regional Foods'}
+          </span>
         </div>
 
         {/* Main Headline */}
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-950 tracking-tight leading-[1.12]">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-stone-950 tracking-tight leading-[1.18] break-words">
             {language === 'ta' ? (
               <>
-                மதுரை, தென்காசி & திருநெல்வேலி உற்பத்தியாளர்களை{' '}
+                தென் தமிழகம்: மதுரை, தென்காசி, புளியங்குடி & திருநெல்வேலி உற்பத்தியாளர்களை{' '}
                 <span className="text-amber-700 underline decoration-amber-300 decoration-wavy decoration-2 underline-offset-6">
                   ஆன்லைனில் கொண்டு வருகிறோம்.
                 </span>
               </>
             ) : (
               <>
-                Taking manufacturers in Madurai, Tenkasi & Tirunelveli{' '}
+                Taking South Tamil Nadu manufacturers in Madurai, Tenkasi, Puliyangudi & Tirunelveli{' '}
                 <span className="text-amber-700 underline decoration-amber-300 decoration-wavy decoration-2 underline-offset-6">
                   profitable online.
                 </span>
