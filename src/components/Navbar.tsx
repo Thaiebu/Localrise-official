@@ -26,8 +26,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         ? 'வணக்கம் LocalRise! நான் மதுரை / தென்காசி / திருநெல்வேலி பகுதியில் இருந்து பேசுகிறேன். எனது தயாரிப்புகளை ஆன்லைனில் விற்பனை செய்வது குறித்து ஆலோசனை பெற விரும்புகிறேன்.'
         : 'Hello LocalRise! I am a manufacturer from Madurai/Tenkasi/Tirunelveli. I would like to consult about taking my products online on Amazon, Flipkart, or Meesho.'
     );
-    // WhatsApp URL (placeholder phone can be customized by owner or updated in contact)
-    window.open(`https://wa.me/919488800000?text=${text}`, '_blank', 'noopener,noreferrer');
+    // WhatsApp URL
+    window.open(`https://wa.me/918056393181?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
   return (

@@ -87,7 +87,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
 
         // Automatically offer WhatsApp follow-up after brief delay
         setTimeout(() => {
-          window.open(`https://wa.me/919488800000?text=${waText}`, '_blank');
+          window.open(`https://wa.me/918056393181?text=${waText}`, '_blank');
         }, 900);
       } else {
         const errorData = await response.json().catch(() => ({}));

@@ -239,7 +239,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ language }) => {
                     {language === 'ta' ? 'வாட்ஸ்அப் ஆதரவு' : 'Instant WhatsApp Dispatch'}
                   </div>
                   <div className="text-stone-400 mt-0.5">
-                    +91 94888 00000 (Mon – Sat, 9:00 AM – 7:00 PM)
+                    +91 80563 93181 (Mon – Sat, 9:00 AM – 7:00 PM)
                   </div>
                 </div>
               </div>
