@@ -50,6 +50,7 @@ export interface CalculatorResult {
 export interface LeadFormData {
   businessName: string;
   contactPerson: string;
+  email: string;
   phone: string;
   city: 'Madurai' | 'Tenkasi' | 'Tirunelveli' | 'Other TN';
   category: string;

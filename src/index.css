@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Smooth Language Fade Transitions */
+.lang-fade-transition {
+  transition: opacity 200ms cubic-bezier(0.2, 0, 0.2, 1),
+              transform 200ms cubic-bezier(0.2, 0, 0.2, 1),
+              filter 200ms cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: opacity, transform, filter;
+}
+
+.lang-fade-out {
+  opacity: 0.2;
+  transform: translateY(3px) scale(0.998);
+  filter: blur(1.2px);
+}
+
+.lang-fade-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+@keyframes langPop {
+  0% { transform: scale(0.96); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-lang-pop {
+  animation: langPop 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

@@ -7,16 +7,18 @@ interface FooterProps {
   onOpenAudit: () => void;
   onOpenDeployGuide: () => void;
   onOpenWhatsApp: () => void;
+  isTransitioning?: boolean;
 }
 
 export const Footer: React.FC<FooterProps> = ({
   language,
   onOpenAudit,
   onOpenDeployGuide,
-  onOpenWhatsApp
+  onOpenWhatsApp,
+  isTransitioning = false
 }) => {
   return (
-    <footer className="bg-stone-950 text-stone-300 pt-16 pb-12 border-t border-stone-800">
+    <footer className={`bg-stone-950 text-stone-300 pt-16 pb-12 border-t border-stone-800 lang-fade-transition ${isTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-stone-800">
@@ -138,6 +140,7 @@ export const Footer: React.FC<FooterProps> = ({
             <a href="#services-pricing" className="hover:text-stone-400 transition-colors">Pricing</a>
             <a href="#margin-calculator" className="hover:text-stone-400 transition-colors">Calculator</a>
             <a href="#how-it-works" className="hover:text-stone-400 transition-colors">How It Works</a>
+            <a href="#contact-form-section" className="text-amber-400 hover:text-amber-300 transition-colors">Inquiry Form</a>
           </div>
         </div>
 

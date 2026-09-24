@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle2, MessageSquare, ArrowRight, ShieldCheck, Phone, MapPin, Building } from 'lucide-react';
+import { X, CheckCircle2, MessageSquare, ArrowRight, ShieldCheck, Mail, AlertCircle, Loader2 } from 'lucide-react';
 import { Language, LeadFormData } from '../types';
 
 interface AuditModalProps {
@@ -8,6 +8,8 @@ interface AuditModalProps {
   language: Language;
   initialNotes?: string;
 }
+
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjykrnql';
 
 export const AuditModal: React.FC<AuditModalProps> = ({
   isOpen,
@@ -18,6 +20,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
   const [formData, setFormData] = useState<LeadFormData>({
     businessName: '',
     contactPerson: '',
+    email: '',
     phone: '',
     city: 'Madurai',
     category: 'Handloom & Textiles',
@@ -25,7 +28,9 @@ export const AuditModal: React.FC<AuditModalProps> = ({
     notes: initialNotes
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (initialNotes) {
@@ -35,27 +40,67 @@ export const AuditModal: React.FC<AuditModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage(null);
 
-    // Prepare WhatsApp link with prefilled factory details
-    const waText = encodeURIComponent(
-      `*New Factory Audit Request via LocalRise Website*\n\n` +
-      `*Business Name:* ${formData.businessName || 'Not specified'}\n` +
-      `*Contact Person:* ${formData.contactPerson || 'Owner'}\n` +
-      `*Phone:* ${formData.phone}\n` +
-      `*District/Hub:* ${formData.city}\n` +
-      `*Category:* ${formData.category}\n` +
-      `*Current Status:* ${formData.currentStatus}\n` +
-      (formData.notes ? `*Notes:* ${formData.notes}\n` : '') +
-      `\nLooking forward to scheduling the 15-minute factory review.`
-    );
+    // Prepare payload for Formspree
+    const payload = {
+      _subject: `New Factory Audit Request: ${formData.businessName || 'Manufacturer'} (${formData.city})`,
+      businessName: formData.businessName,
+      contactPerson: formData.contactPerson,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      category: formData.category,
+      currentStatus: formData.currentStatus,
+      message: formData.notes || 'No additional notes provided',
+      submittedAt: new Date().toISOString()
+    };
 
-    // Open WhatsApp in new tab for direct frictionless contact
-    setTimeout(() => {
-      window.open(`https://wa.me/919488800000?text=${waText}`, '_blank');
-    }, 600);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+
+        // Pre-fill WhatsApp message for instant follow-up
+        const waText = encodeURIComponent(
+          `*New Factory Audit Request via LocalRise Website*\n\n` +
+          `*Business Name:* ${formData.businessName || 'Not specified'}\n` +
+          `*Contact Person:* ${formData.contactPerson || 'Owner'}\n` +
+          `*Email:* ${formData.email}\n` +
+          `*Phone:* ${formData.phone}\n` +
+          `*District/Hub:* ${formData.city}\n` +
+          `*Category:* ${formData.category}\n` +
+          `*Current Status:* ${formData.currentStatus}\n` +
+          (formData.notes ? `*Notes:* ${formData.notes}\n` : '')
+        );
+
+        // Automatically offer WhatsApp follow-up after brief delay
+        setTimeout(() => {
+          window.open(`https://wa.me/919488800000?text=${waText}`, '_blank');
+        }, 900);
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to submit form to Formspree. Please try again or message on WhatsApp.');
+      }
+    } catch (err: any) {
+      console.error('Formspree submission error:', err);
+      setErrorMessage(
+        err.message || (language === 'ta' ? 'படிவத்தை அனுப்புவதில் சிக்கல் ஏற்பட்டது. தயவுசெய்து மீண்டும் முயற்சிக்கவும் அல்லது வாட்ஸ்அப்பில் தொடர்பு கொள்ளவும்.' : 'There was an issue submitting your inquiry. Please try again or chat with us on WhatsApp.')
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,8 +137,27 @@ export const AuditModal: React.FC<AuditModalProps> = ({
               </p>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Error message alert */}
+            {errorMessage && (
+              <div className="mb-4 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2">
+                <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
+            {/* Form targeting Formspree */}
+            <form
+              action={FORMSPREE_ENDPOINT}
+              method="POST"
+              onSubmit={handleSubmit}
+              className="space-y-4"
+            >
+              {/* Hidden Formspree Subject */}
+              <input
+                type="hidden"
+                name="_subject"
+                value={`New Factory Audit Inquiry: ${formData.businessName || 'Manufacturer'}`}
+              />
               
               {/* Business Name */}
               <div>
@@ -102,6 +166,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                 </label>
                 <input
                   type="text"
+                  name="businessName"
                   required
                   placeholder={language === 'ta' ? 'எ.கா: மதுரை சுங்குடி டெக்ஸ்டைல்ஸ்' : 'e.g. Sri Murugan Handlooms / Brass Crafts'}
                   value={formData.businessName}
@@ -118,6 +183,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                   </label>
                   <input
                     type="text"
+                    name="contactPerson"
                     required
                     placeholder={language === 'ta' ? 'உங்கள் பெயர்' : 'Owner / Manager Name'}
                     value={formData.contactPerson}
@@ -132,6 +198,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                   </label>
                   <input
                     type="tel"
+                    name="phone"
                     required
                     pattern="[0-9]{10}"
                     title="Please enter a valid 10-digit mobile number"
@@ -143,6 +210,25 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                 </div>
               </div>
 
+              {/* Email Address for Formspree Notification & Direct Reply */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
+                  {language === 'ta' ? 'மின்னஞ்சல் முகவரி' : 'Your Email Address'} *
+                </label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="factory.owner@gmail.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-hidden focus:ring-2 focus:ring-stone-900 focus:border-stone-900 bg-stone-50/50"
+                  />
+                  <Mail className="w-4 h-4 text-stone-400 absolute left-3 top-3 pointer-events-none" />
+                </div>
+              </div>
+
               {/* City / Hub Selection */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
@@ -150,6 +236,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                     {language === 'ta' ? 'மாவட்டம் / பகுதி' : 'District Hub'}
                   </label>
                   <select
+                    name="city"
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value as any })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-hidden focus:ring-2 focus:ring-stone-900 bg-stone-50/50"
@@ -166,6 +253,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                     {language === 'ta' ? 'தயாரிப்பு வகை' : 'Product Category'}
                   </label>
                   <select
+                    name="category"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-sm focus:outline-hidden focus:ring-2 focus:ring-stone-900 bg-stone-50/50"
@@ -185,6 +273,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                 <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
                   {language === 'ta' ? 'தற்போதைய விற்பனை நிலை' : 'Current Online Status'}
                 </label>
+                <input type="hidden" name="currentStatus" value={formData.currentStatus} />
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   {[
                     { id: 'offline_only', label: '100% Offline Wholesale' },
@@ -208,12 +297,13 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                 </div>
               </div>
 
-              {/* Notes */}
+              {/* Message / Notes */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
-                  {language === 'ta' ? 'கூடுதல் குறிப்புகள் (விருப்பத்தேர்வு)' : 'Products you want to list / Notes (Optional)'}
+                  {language === 'ta' ? 'செய்தி / கூடுதல் குறிப்புகள்' : 'Your Message / Product Notes'}
                 </label>
                 <textarea
+                  name="message"
                   rows={2}
                   placeholder={language === 'ta' ? 'தயாரிப்புகளின் எடை, விலை விபரங்கள்...' : 'Approximate SKUs, prices, or questions you have...'}
                   value={formData.notes}
@@ -226,17 +316,27 @@ export const AuditModal: React.FC<AuditModalProps> = ({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>
-                    {language === 'ta' ? 'தகவல்களை அனுப்பி வாட்ஸ்அப்பில் உரையாட' : 'Submit & Connect on WhatsApp'}
-                  </span>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>{language === 'ta' ? 'அனுப்பப்படுகிறது...' : 'Sending to Formspree...'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <MessageSquare className="w-4 h-4" />
+                      <span>
+                        {language === 'ta' ? 'விபரங்களை அனுப்புக (Formspree & WhatsApp)' : 'Send Audit Request via Formspree'}
+                      </span>
+                    </>
+                  )}
                 </button>
                 <p className="text-[11px] text-center text-stone-500 mt-2">
                   {language === 'ta'
-                    ? 'உங்கள் தகவல்கள் பாதுகாப்பானது. தேவையற்ற ஸ்பேம் அழைப்புகள் இல்லை.'
-                    : '100% confidential. No spam or unsolicited marketing calls.'}
+                    ? '100% பாதுகாப்பானது • உங்கள் விபரங்கள் நேரடியாக Formspree வழியாக எங்கள் மின்னஞ்சலுக்கு அனுப்பப்படும்.'
+                    : 'Encrypted via Formspree • Sent directly to our founder inbox with zero spam.'}
                 </p>
               </div>
 
@@ -249,12 +349,12 @@ export const AuditModal: React.FC<AuditModalProps> = ({
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h3 className="text-2xl font-bold text-stone-900">
-              {language === 'ta' ? 'கோரிக்கை பெறப்பட்டது!' : 'Audit Request Received!'}
+              {language === 'ta' ? 'படிவம் வெற்றிகரமாக அனுப்பப்பட்டது!' : 'Inquiry Successfully Sent!'}
             </h3>
             <p className="mt-2 text-sm text-stone-600 max-w-sm mx-auto">
               {language === 'ta'
-                ? `நன்றி ${formData.contactPerson}. உங்கள் தொழிற்சாலைக்கான தயாரிப்பு ஆய்வுத் திட்டத்துடன் எங்கள் களப்பணியாளர் வாட்ஸ்அப்பில் உங்களை தொடர்பு கொள்வார்.`
-                : `Thank you ${formData.contactPerson}. We have recorded details for ${formData.businessName} in ${formData.city}. We will review your catalog and message you shortly.`}
+                ? `நன்றி ${formData.contactPerson}. உங்கள் விபரங்கள் எங்கள் மின்னஞ்சலுக்கு Formspree மூலமாக பதிவு செய்யப்பட்டுள்ளது. வாட்ஸ்அப்பிலும் உடனடி ஆலோசனை தொடரும்.`
+                : `Thank you ${formData.contactPerson}. Your request for ${formData.businessName} has been routed directly to our inbox via Formspree. We will review your catalog and follow up promptly.`}
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
@@ -264,7 +364,7 @@ export const AuditModal: React.FC<AuditModalProps> = ({
                   setSubmitted(false);
                   onClose();
                 }}
-                className="px-6 py-2.5 rounded-xl bg-stone-900 text-white font-bold text-xs uppercase tracking-wider hover:bg-stone-800"
+                className="px-6 py-2.5 rounded-xl bg-stone-900 text-white font-bold text-xs uppercase tracking-wider hover:bg-stone-800 cursor-pointer"
               >
                 {language === 'ta' ? 'முடிந்தது' : 'Done'}
               </button>

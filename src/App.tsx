@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { RegionalClusters } from './components/RegionalClusters';
@@ -12,18 +12,62 @@ import { ServicesPricing } from './components/ServicesPricing';
 import { HowItWorks } from './components/HowItWorks';
 import { WhyLocalRise } from './components/WhyLocalRise';
 import { CaseStudies } from './components/CaseStudies';
+import { ContactForm } from './components/ContactForm';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { AuditModal } from './components/AuditModal';
 import { DeploymentModal } from './components/DeploymentModal';
 import { Language, PricingPlan } from './types';
-import { MessageSquare, ArrowUp } from 'lucide-react';
+import { MessageSquare, ArrowUp, Globe2, CheckCircle2 } from 'lucide-react';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>('en');
+  const [isLangTransitioning, setIsLangTransitioning] = useState<boolean>(false);
+  const [toastNotification, setToastNotification] = useState<{ message: string; lang: Language } | null>(null);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   const [auditNotes, setAuditNotes] = useState<string>('');
   const [isDeployModalOpen, setIsDeployModalOpen] = useState(false);
+  
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Smooth language switch handler with cross-fade animation
+  const handleLanguageChange = (newLang: Language) => {
+    if (newLang === language || isLangTransitioning) return;
+
+    // Phase 1: Begin fade-out & soft blur
+    setIsLangTransitioning(true);
+
+    setTimeout(() => {
+      // Phase 2: Swap language data while opacity is dipped
+      setLanguage(newLang);
+
+      // Trigger pop toast feedback
+      setToastNotification({
+        message: newLang === 'ta' ? 'தமிழ் மொழிக்கு மாற்றப்பட்டது' : 'Language switched to English',
+        lang: newLang
+      });
+
+      if (toastTimeoutRef.current) {
+        clearTimeout(toastTimeoutRef.current);
+      }
+      toastTimeoutRef.current = setTimeout(() => {
+        setToastNotification(null);
+      }, 2400);
+
+      // Phase 3: Fade-in smoothly on next render frame
+      requestAnimationFrame(() => {
+        setIsLangTransitioning(false);
+      });
+    }, 150);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (toastTimeoutRef.current) {
+        clearTimeout(toastTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleOpenAudit = (notes?: string) => {
     setAuditNotes(notes || '');
@@ -44,7 +88,7 @@ export default function App() {
       : 'Hello LocalRise! I am a manufacturer from Madurai/Tenkasi/Tirunelveli and would like to discuss taking my factory products online.';
     
     const text = encodeURIComponent(customText || defaultText);
-    window.open(`https://wa.me/919488800000?text=${text}`, '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/918056393181?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -53,13 +97,14 @@ export default function App() {
       {/* Sticky Navigation */}
       <Navbar
         language={language}
-        onLanguageChange={setLanguage}
+        onLanguageChange={handleLanguageChange}
         onOpenAudit={() => handleOpenAudit()}
         onOpenDeployGuide={() => setIsDeployModalOpen(true)}
+        isTransitioning={isLangTransitioning}
       />
 
-      {/* Main Page Sections */}
-      <main className="flex-1">
+      {/* Main Page Sections with smooth fade transition */}
+      <main className={`flex-1 lang-fade-transition ${isLangTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
         
         {/* Hero Section */}
         <Hero
@@ -104,6 +149,11 @@ export default function App() {
           onOpenAudit={() => handleOpenAudit()}
         />
 
+        {/* Direct Inquiries / Contact Form powered by Formspree */}
+        <ContactForm
+          language={language}
+        />
+
         {/* FAQs */}
         <FAQSection
           language={language}
@@ -119,7 +169,21 @@ export default function App() {
         onOpenAudit={() => handleOpenAudit()}
         onOpenDeployGuide={() => setIsDeployModalOpen(true)}
         onOpenWhatsApp={() => handleOpenWhatsApp()}
+        isTransitioning={isLangTransitioning}
       />
+
+      {/* Language Change Floating Feedback Toast */}
+      {toastNotification && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all">
+          <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-stone-900/95 backdrop-blur-md text-white text-xs font-semibold shadow-2xl border border-stone-700/80 animate-lang-pop">
+            <Globe2 className="w-3.5 h-3.5 text-amber-400" />
+            <span>{toastNotification.message}</span>
+            <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-mono font-bold uppercase tracking-wider">
+              {toastNotification.lang === 'ta' ? 'தமிழ்' : 'EN'}
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Floating Sticky Quick Action Pill on Mobile */}
       <div className="fixed bottom-4 right-4 z-40 flex items-center gap-2">
@@ -154,3 +218,4 @@ export default function App() {
     </div>
   );
 }
+

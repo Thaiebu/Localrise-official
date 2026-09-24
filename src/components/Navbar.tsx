@@ -7,13 +7,15 @@ interface NavbarProps {
   onLanguageChange: (lang: Language) => void;
   onOpenAudit: () => void;
   onOpenDeployGuide: () => void;
+  isTransitioning?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   language,
   onLanguageChange,
   onOpenAudit,
-  onOpenDeployGuide
+  onOpenDeployGuide,
+  isTransitioning = false
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="font-medium text-stone-200">
+            <span className={`font-medium text-stone-200 lang-fade-transition ${isTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
               {language === 'ta'
                 ? 'நேரடி தொழிற்சாலை சேவை: மதுரை • தென்காசி • திருநெல்வேலி'
                 : 'Direct Ground Partner: Madurai • Tenkasi • Tirunelveli'}
@@ -71,14 +73,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   TN
                 </span>
               </div>
-              <span className="text-[10px] font-semibold text-stone-600 tracking-wider uppercase">
+              <span className={`text-[10px] font-semibold text-stone-600 tracking-wider uppercase lang-fade-transition ${isTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
                 {language === 'ta' ? 'உற்பத்தியாளர்களின் ஆன்லைன் தளம்' : 'Factory to Marketplace'}
               </span>
             </a>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
+          <nav className={`hidden md:flex items-center gap-6 text-sm font-medium text-stone-600 lang-fade-transition ${isTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
             <a href="#regional-clusters" className="hover:text-stone-900 transition-colors">
               {language === 'ta' ? 'உற்பத்தி மையங்கள்' : 'Regional Hubs'}
             </a>
@@ -94,32 +96,39 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a href="#about-founder" className="hover:text-stone-900 transition-colors">
               {language === 'ta' ? 'ஏன் லோக்கல்ரைஸ்' : 'Why LocalRise'}
             </a>
+            <a href="#contact-form-section" className="hover:text-stone-900 transition-colors">
+              {language === 'ta' ? 'தொடர்பு படிவம்' : 'Contact Us'}
+            </a>
           </nav>
 
           {/* Right Action Cluster */}
           <div className="hidden sm:flex items-center gap-3">
             
-            {/* Language Switcher */}
-            <div className="flex items-center bg-stone-100 rounded-lg p-0.5 border border-stone-200">
+            {/* Language Switcher with tactile transition */}
+            <div className="flex items-center bg-stone-100 rounded-lg p-0.5 border border-stone-200 shadow-inner">
               <button
                 type="button"
+                disabled={isTransitioning}
                 onClick={() => onLanguageChange('en')}
-                className={`px-2 py-1 rounded text-xs font-semibold transition-all ${
+                aria-label="Switch to English"
+                className={`relative px-2.5 py-1 rounded-md text-xs font-semibold transition-all duration-200 cursor-pointer ${
                   language === 'en'
-                    ? 'bg-white text-stone-900 shadow-xs'
-                    : 'text-stone-500 hover:text-stone-800'
-                }`}
+                    ? 'bg-white text-stone-950 shadow-xs ring-1 ring-stone-900/10'
+                    : 'text-stone-500 hover:text-stone-900'
+                } ${isTransitioning ? 'pointer-events-none opacity-80' : ''}`}
               >
                 EN
               </button>
               <button
                 type="button"
+                disabled={isTransitioning}
                 onClick={() => onLanguageChange('ta')}
-                className={`px-2 py-1 rounded text-xs font-semibold transition-all ${
+                aria-label="Switch to Tamil"
+                className={`relative px-2.5 py-1 rounded-md text-xs font-semibold transition-all duration-200 cursor-pointer ${
                   language === 'ta'
                     ? 'bg-amber-600 text-white shadow-xs'
-                    : 'text-stone-500 hover:text-stone-800'
-                }`}
+                    : 'text-stone-500 hover:text-stone-900'
+                } ${isTransitioning ? 'pointer-events-none opacity-80' : ''}`}
               >
                 தமிழ்
               </button>
@@ -133,7 +142,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Chat on WhatsApp"
             >
               <MessageSquare className="w-4 h-4 text-emerald-600 fill-emerald-600/20" />
-              <span className="hidden lg:inline">{language === 'ta' ? 'வாட்ஸ்அப்' : 'WhatsApp'}</span>
+              <span className={`hidden lg:inline lang-fade-transition ${isTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
+                {language === 'ta' ? 'வாட்ஸ்அப்' : 'WhatsApp'}
+              </span>
             </button>
 
             {/* Primary Action Button */}
@@ -142,7 +153,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={onOpenAudit}
               className="px-4 py-2.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-xs flex items-center gap-1.5"
             >
-              <span>{language === 'ta' ? 'இலவச ஆலோசனை' : 'Book Free Audit'}</span>
+              <span className={`lang-fade-transition ${isTransitioning ? 'lang-fade-out' : 'lang-fade-in'}`}>
+                {language === 'ta' ? 'இலவச ஆலோசனை' : 'Book Free Audit'}
+              </span>
               <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
             </button>
 
@@ -152,8 +165,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2 sm:hidden">
             <button
               type="button"
+              disabled={isTransitioning}
               onClick={() => onLanguageChange(language === 'en' ? 'ta' : 'en')}
-              className="px-2 py-1 rounded text-xs font-bold bg-stone-100 border border-stone-200 text-stone-800"
+              className={`px-2.5 py-1 rounded-md text-xs font-bold border transition-all ${
+                language === 'ta'
+                  ? 'bg-amber-600 text-white border-amber-600'
+                  : 'bg-stone-100 text-stone-800 border-stone-200'
+              }`}
             >
               {language === 'en' ? 'தமிழ்' : 'EN'}
             </button>
@@ -208,6 +226,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="p-2 rounded-lg hover:bg-stone-100"
             >
               {language === 'ta' ? 'ஏன் லோக்கல்ரைஸ்' : 'Why LocalRise'}
+            </a>
+            <a
+              href="#contact-form-section"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 rounded-lg hover:bg-stone-100 font-semibold text-amber-700"
+            >
+              {language === 'ta' ? 'தொடர்பு படிவம் (Formspree)' : 'Contact Us (Inquiry Form)'}
             </a>
           </nav>
           
